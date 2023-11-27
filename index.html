@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Par</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f1f1f1;
+        }
+        
+        .container {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .card {
+            width: 200px;
+            height: 200px;
+            perspective: 1000px;
+            margin: 10px;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+        }
+
+        .card-front {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            line-height: 200px;
+            font-size: 24px;
+        }
+
+        .card-back {
+            background-color: #f1f1f1;
+            color: #333;
+            text-align: center;
+            line-height: 200px;
+            font-size: 18px;
+            transform: rotateY(180deg);
+        }
+
+        .card-back a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .animation {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            animation: colorful 2s infinite;
+        }
+
+        @keyframes colorful {
+            0% { color: red; }
+            25% { color: blue; }
+            50% { color: green; }
+            75% { color: purple; }
+            100% { color: red; }
+        }
+    </style>
+    <script>
+        function openYouTubeApp(videoId) {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            // Check if the user is on a mobile device
+            if (/android/i.test(userAgent)) {
+                window.location.href = 'intent://youtu.be/' + videoId + '#Intent;scheme=fb://;package=com.google.android.youtube;S.browser_fallback_url=' + encodeURIComponent('https://www.youtube.com/watch?v=' + videoId) + ';end;';
+            }
+            else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                window.location.href = 'youtube://watch?v=' + videoId;
+            }
+            else {
+                window.open('https://www.youtube.com/watch?v=' + videoId, '_blank');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div>Pick your mood queen</div>
+        <div class="cards">
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">Card 1</div>
+                    <div class="card-back">
+                        <a href="#" onclick="openYouTubeApp('ZEGpWo7ethQ&t'); return false;">A surprise</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">Card 2</div>
+                    <div class="card-back">
+                        <a href="#" onclick="openYouTubeApp('M2YjHf1TNjs'); return false;">2 : A mix </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">Card 3</div>
+                    <div class="card-back">
+                        <a href="#" onclick="openYouTubeApp('7icdpSu2YL0'); return false;">3 : romantic</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
